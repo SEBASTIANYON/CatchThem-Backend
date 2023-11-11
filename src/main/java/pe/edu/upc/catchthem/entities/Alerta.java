@@ -15,9 +15,9 @@ public class Alerta {
     private LocalDate fecha;
     @Column(name = "tipo",length = 20,nullable = false)
     private String tipo;
-    @Column(name = "descripcion",length = 20,nullable = false)
+    @Column(name = "descripcion",length = 100,nullable = false)
     private String descripcion;
-    @Column(name = "ubicacion",length = 20,nullable = false)
+    @Column(name = "ubicacion",length = 100,nullable = false)
     private String ubicacion;
     @Column(name = "gravedad",length = 20,nullable = false)
     private String gravedad;
