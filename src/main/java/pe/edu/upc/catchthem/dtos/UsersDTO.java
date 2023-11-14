@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 public class UsersDTO {
+
     private Long id;
 
 
@@ -21,10 +22,17 @@ public class UsersDTO {
 
     private String telefono;
 
-    private String imagen;
-
     private Entidad entidad;
 
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public Long getId() {
         return id;
@@ -90,11 +98,4 @@ public class UsersDTO {
         this.entidad = entidad;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
 }

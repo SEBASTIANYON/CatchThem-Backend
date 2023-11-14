@@ -19,6 +19,12 @@ public class RoleServiceImplement implements IRoleService{
         return rR.findAll();
     }
 
+
+    @Override
+    public void ingresar(Role role) {
+        rR.save(role);
+    }
+
     @Override
     public void eliminar(long id) {
         rR.deleteById(id);

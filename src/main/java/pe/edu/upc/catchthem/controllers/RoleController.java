@@ -25,7 +25,12 @@ public class RoleController {
             return m.map(x,RoleDTO.class);
         }).collect(Collectors.toList());
     }
-
+    @PostMapping
+    public void registrar(@RequestBody RoleDTO roleDTO){
+        ModelMapper m= new ModelMapper();
+        Role r = m.map(roleDTO,Role.class);
+        rS.ingresar(r);
+    }
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Long id){
