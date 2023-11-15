@@ -20,12 +20,14 @@ public class UsersController {
     private IUsersService uS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar(@RequestBody UsersDTO dto){
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto,Users.class);
         uS.insert(u);
     }
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsersDTO> listar(){
         return uS.listar().stream().map(x-> {
             ModelMapper m = new ModelMapper();
@@ -33,11 +35,13 @@ public class UsersController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id") Long id) {
         uS.eliminar(id);
     }
 
     @PostMapping("/insertarrol")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertarRol(@RequestParam("authority") String authority,@RequestParam("user_id") Long user_id){
         uS.insRol(authority,user_id);
     }
@@ -56,6 +60,7 @@ public class UsersController {
     }
 
     @GetMapping("/usuariosPorEntidad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ListarUsuariosDTO> UsuariosPorEntidad(@RequestBody Entidad entidad){
         List<String[]> lista = uS.findAllByEntidad(entidad.getNombre());
         List<ListarUsuariosDTO>listadto=new ArrayList<>();
@@ -70,9 +75,20 @@ public class UsersController {
     }
 
     @GetMapping("/BusquedaporCorreo")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public UsersDTO buscarporcorreo(@RequestParam("email") String email){
         ModelMapper m = new ModelMapper();
         UsersDTO s = m.map(uS.findUsersByCorreo(email),UsersDTO.class);
         return s;
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public UsersDTO listarId(@PathVariable("id") long id) {
+        ModelMapper m=new ModelMapper();
+        UsersDTO dto=m.map(uS.listarId(id),UsersDTO.class);
+        return dto;
+    }
+
+
 }
