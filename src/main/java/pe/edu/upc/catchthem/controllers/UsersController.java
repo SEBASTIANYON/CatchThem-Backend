@@ -3,6 +3,7 @@ package pe.edu.upc.catchthem.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.catchthem.dtos.*;
 import pe.edu.upc.catchthem.entities.Entidad;
@@ -18,12 +19,15 @@ import java.util.stream.Collectors;
 public class UsersController {
     @Autowired
     private IUsersService uS;
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar(@RequestBody UsersDTO dto){
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto,Users.class);
+        u.setPassword(bcrypt.encode(u.getPassword()));
         uS.insert(u);
     }
 
