@@ -1,14 +1,12 @@
 package pe.edu.upc.catchthem.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
+public class Users  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +23,14 @@ public class Users implements Serializable {
 	private String correo;
 	@Column(name = "telefono", length = 9, nullable = false)
 	private String telefono;
-	@Column(name = "imagen", length = 255, nullable = true)
+
+	@Column(name = "imagen")
 	private String imagen;
 	@ManyToOne
 	@JoinColumn(name = "id_entidad")
-	@JsonIgnore
 	private Entidad entidad;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	@JsonIgnore
 	private List<Role> roles;
 
 
@@ -51,14 +48,6 @@ public class Users implements Serializable {
 		this.imagen = imagen;
 		this.entidad = entidad;
 		this.roles = roles;
-	}
-
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
 	}
 
 	public String getNombre() {
@@ -133,4 +122,11 @@ public class Users implements Serializable {
 		this.roles = roles;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 }

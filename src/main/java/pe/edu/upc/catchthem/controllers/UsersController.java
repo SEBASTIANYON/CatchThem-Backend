@@ -30,31 +30,14 @@ public class UsersController {
         u.setPassword(bcrypt.encode(u.getPassword()));
         uS.insert(u);
     }
-
-    @GetMapping("/{id}")
-    public UsersDTO listarId(@PathVariable("id") Long id){
-        ModelMapper m = new ModelMapper();
-        UsersDTO dto = m.map(uS.listarId(id),UsersDTO.class);
-        return dto;
-    }
-
-    @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void modificar(@RequestBody UsersDTO dto){
-        ModelMapper m = new ModelMapper();
-        Users u = m.map(dto,Users.class);
-        uS.insert(u);
-    }
-
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")    
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsersDTO> listar(){
         return uS.listar().stream().map(x-> {
             ModelMapper m = new ModelMapper();
             return m.map(x,UsersDTO.class);
         }).collect(Collectors.toList());
     }
-
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id") Long id) {
@@ -68,7 +51,6 @@ public class UsersController {
     }
 
     @GetMapping("/cantidadActasPorPolicia")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ActasporPoliciaDTO> cantidadActasPorPolicia(){
         List<String[]> lista = uS.ActasporPolicia();
         List<ActasporPoliciaDTO>listadto=new ArrayList<>();
@@ -103,4 +85,14 @@ public class UsersController {
         UsersDTO s = m.map(uS.findUsersByCorreo(email),UsersDTO.class);
         return s;
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public UsersDTO listarId(@PathVariable("id") long id) {
+        ModelMapper m=new ModelMapper();
+        UsersDTO dto=m.map(uS.listarId(id),UsersDTO.class);
+        return dto;
+    }
+
+
 }

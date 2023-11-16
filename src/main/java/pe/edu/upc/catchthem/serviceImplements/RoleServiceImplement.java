@@ -20,7 +20,18 @@ public class RoleServiceImplement implements IRoleService{
     }
 
     @Override
+    public void insert(Role role) {
+        rR.save(role);
+    }
+
+
+    @Override
     public void eliminar(long id) {
         rR.deleteById(id);
+    }
+
+    @Override
+    public List<String[]> Buscarporidusuario(long idusuario) {
+        return rR.Buscarporidusuario(idusuario);
     }
 }
