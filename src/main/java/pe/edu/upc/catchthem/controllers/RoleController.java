@@ -59,7 +59,7 @@ public class RoleController {
         return listadto;
     }
 
-    public Users usuario(long id){
+    private Users usuario(long id){
         Users user = sS.listarId(id);
         return user;
     }

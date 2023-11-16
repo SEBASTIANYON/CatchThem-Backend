@@ -5,7 +5,7 @@ import pe.edu.upc.catchthem.entities.Users;
 public class RoleDTO {
     private long id;
     private String rol;
-    private UsersDTO user;
+    private Users user;
 
     public long getId() {
         return id;
@@ -23,11 +23,11 @@ public class RoleDTO {
         this.rol = rol;
     }
 
-    public UsersDTO getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(UsersDTO user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 }
