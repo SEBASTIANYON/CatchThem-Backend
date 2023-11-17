@@ -27,7 +27,7 @@ public class RoleServiceImplement implements IRoleService{
 
     @Override
     public void eliminar(long id) {
-        rR.deleteById(id);
+        rR.eliminar(id);
     }
 
     @Override
