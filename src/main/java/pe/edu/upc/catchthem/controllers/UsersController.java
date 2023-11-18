@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.catchthem.dtos.*;
 import pe.edu.upc.catchthem.entities.Entidad;
+import pe.edu.upc.catchthem.entities.Sospechoso;
 import pe.edu.upc.catchthem.entities.Users;
 import pe.edu.upc.catchthem.serviceInterfaces.IUsersService;
 
@@ -94,5 +95,12 @@ public class UsersController {
         return dto;
     }
 
+    @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')or hasAuthority('AGENTE')")
+    public void modificar(@RequestBody UsersDTO usuariodto){
+        ModelMapper m= new ModelMapper();
+        Users ap = m.map(usuariodto, Users.class);
+        uS.insert(ap);
+    }
 
 }

@@ -60,11 +60,11 @@ public class EntidadController {
 
     @GetMapping("/cantidadsospechosos")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<SospechosoEntidadDTO> cantidaddesospechososporentidad(){
+    public List<cantidadsospechososDTO> cantidaddesospechososporentidad(){
         List<String[]> lista = iEntidadService.SospechososPorEntidad();
-        List<SospechosoEntidadDTO>listadto=new ArrayList<>();
+        List<cantidadsospechososDTO>listadto=new ArrayList<>();
         for(String[] data:lista){
-            SospechosoEntidadDTO dto =  new SospechosoEntidadDTO();
+            cantidadsospechososDTO dto =  new cantidadsospechososDTO();
             dto.setNamesEntidad(data[0]);
             dto.setCantidadSospechosos(Integer.parseInt(data[1]));
 
