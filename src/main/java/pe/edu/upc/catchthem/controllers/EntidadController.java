@@ -93,7 +93,6 @@ public class EntidadController {
     }
 
     @GetMapping("/cantidadcamaras")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EntidadCamarasDTO> cantidadcamaras(){
         List<String[]> lista = iEntidadService.cantidadCamarasporEntidad();
         List<EntidadCamarasDTO>listadto=new ArrayList<>();
