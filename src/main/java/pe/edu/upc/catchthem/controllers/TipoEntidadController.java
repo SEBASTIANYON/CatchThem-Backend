@@ -47,4 +47,12 @@ public class TipoEntidadController {
             return m.map(x,TipoEntidadDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public TipoEntidadDTO buscarporid(@PathVariable("id")  Integer id){
+        ModelMapper m = new ModelMapper();
+        TipoEntidadDTO s = m.map(iTipoEntidadService.listarId(id),TipoEntidadDTO.class);
+        return s;
+    }
 }
