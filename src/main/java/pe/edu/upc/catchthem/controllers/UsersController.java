@@ -98,7 +98,6 @@ public class UsersController {
     @PutMapping
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')or hasAuthority('AGENTE')")
     public void modificar(@RequestBody UsersDTO usuariodto){
-        System.out.println(usuariodto);
         ModelMapper m= new ModelMapper();
         Users actualUser = uS.listarId(usuariodto.getId());
         Users ap = m.map(usuariodto, Users.class);
