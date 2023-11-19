@@ -59,7 +59,6 @@ public class EntidadController {
     }
 
     @GetMapping("/cantidadsospechosos")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<cantidadsospechososDTO> cantidaddesospechososporentidad(){
         List<String[]> lista = iEntidadService.SospechososPorEntidad();
         List<cantidadsospechososDTO>listadto=new ArrayList<>();
@@ -74,7 +73,6 @@ public class EntidadController {
     }
 
     @GetMapping("/edadpromedio")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<SospechosoEntidadDTO> edadpromedioporentidad(){
 
         List<String[]> lista = iEntidadService.ListarNacimientoSospechososPorEntidad();

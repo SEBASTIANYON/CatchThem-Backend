@@ -46,7 +46,6 @@ public class AntecedentePenalController {
     }
 
     @GetMapping("/DelitoPorAntecedente")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')")
     public List<AntecedentesPorDelitoDTO> AntecedentesPorDelito(){
         List<String[]> lista = aS.antecedentesPorDelito();
         List<AntecedentesPorDelitoDTO>listadto=new ArrayList<>();

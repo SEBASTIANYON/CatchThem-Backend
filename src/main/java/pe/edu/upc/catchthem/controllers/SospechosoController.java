@@ -91,7 +91,6 @@ public class SospechosoController {
     }
 
     @GetMapping("/cantidadantecedentesporsospechoso")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<AntecedentesporSospechosoDTO> cantidadantecedentesporsospechoso(){
         List<String[]> lista = iSospechosoService.AntecedentesporSospechoso();
         List<AntecedentesporSospechosoDTO>listadto=new ArrayList<>();
@@ -105,7 +104,6 @@ public class SospechosoController {
     }
 
     @GetMapping("/cantidadsospechososnacionalidad")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')")
     public List<SospechosoPorNacionalidadDTO> sospechosoPorNacionalidad(){
         List<String[]> lista = iSospechosoService.sospechososPorNacionalidad();
         List<SospechosoPorNacionalidadDTO>listadto=new ArrayList<>();

@@ -60,7 +60,6 @@ public class AlertaController {
     }
 
     @GetMapping("/Alertasporubicacion")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<AlertaporUbicacionDTO> CantidadAlertasPorUbicacion(){
         List<String[]> lista = alertaService.CantidadAlertasPorUbicacion();
         List<AlertaporUbicacionDTO>listadto=new ArrayList<>();
@@ -73,7 +72,6 @@ public class AlertaController {
         return listadto;
     }
     @GetMapping("/PromedioAlertarPorEntidad")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<AlertaPromedioMensualEntidadDTO> cantidadActasPorPolicia(){
         List<String[]> lista = alertaService.PromedioMensualEntidad();
         List<AlertaPromedioMensualEntidadDTO>listadto=new ArrayList<>();
